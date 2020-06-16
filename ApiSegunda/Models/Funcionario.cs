@@ -1,11 +1,29 @@
-﻿namespace ApiSegunda.Models
+﻿using System.Runtime.Serialization;
+
+namespace ApiSegunda.Models
 {
-    public class Funcionario
+    [DataContract(Name = "Funcionario", Namespace = "http://localhost:61712/")]
+    public class Funcionario : IExtensibleDataObject
     {
-        private string cidade { get; set; }
-        private int codigo { get; set; }
-        private string nome { get; set; }
-        private string setor { get; set; }
-        private string sobrenome { get; set; }
+        public Funcionario(string cidade, int codigo, string nome, string setor, string sobrenome)
+        {
+            this.cidade = cidade;
+            this.codigo = codigo;
+            this.nome = nome;
+            this.setor = setor;
+            this.sobrenome = sobrenome;
+        }
+
+        [DataMember(Name = "Cidade")] private string cidade { get; set; }
+
+        [DataMember(Name = "Codigo")] private int codigo { get; set; }
+
+        [DataMember(Name = "Nome")] private string nome { get; set; }
+
+        [DataMember(Name = "Setor")] private string setor { get; set; }
+
+        [DataMember(Name = "Sobrenome")] private string sobrenome { get; set; }
+
+        public ExtensionDataObject ExtensionData { get; set; }
     }
 }
